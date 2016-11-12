@@ -25,13 +25,13 @@
 #define FT6X36_ID       0x36
 
 #define FTS_APK_DEBUG
-#define CONFIG_TOUCHPANEL_PROXIMITY_SENSOR
+//#define CONFIG_TOUCHPANEL_PROXIMITY_SENSOR
 
 #define TPD_MAX_POINTS_2                        2
 #define TPD_MAX_POINTS_5                        5
 #define TPD_MAX_POINTS_10                        10
 
-#define FTS_NAME	"fts_wq"
+#define FTS_NAME_STRING	"fts_wq"
 
 
 struct fw_upgrade_info {

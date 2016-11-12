@@ -50,6 +50,34 @@
 #include <linux/wakelock.h>
 #endif
 
+/////////////////////////HACKING To GET THIS THING COMPILING BY ain101 START
+#define AUTO_CLB_NEED 0
+#define AUTO_CLB_NONEED 0
+uint8_t CTPM_FW[30];
+//***********************0705 mshl* from: https://github.com/kirananto/ZENFONE2/blob/master/drivers/input/touchscreen/ftxxxx_ex_fun.h
+#define    BL_VERSION_LZ4        0
+#define    BL_VERSION_Z7         1
+#define    BL_VERSION_GZF 2
+//***********************0705 mshl end
+
+static int ft5x06_i2c_write(struct i2c_client *client, char *writebuf, int writelen);
+// for ft5x06_auto_cal
+static int ft5x0x_write_reg(struct i2c_client *client, u8 addr, const u8 val);
+/*
+static int ft5x0x_write_reg(struct i2c_client *client, char *writebuf, int writelen){
+    return ft5x06_i2c_write(client, writebuf, writelen);
+}
+*/
+//HACKED FUnctions
+// they forgot a prototype
+//https://gitlab.com/HRTKernel/Hacker_Kernel_SM-N910F/blob/3eefdd7e34ffdff6d2ae00e4bdacad0e3de8b7df/drivers/input/touchscreen/ft5x06_ts.c
+static int ft5x06_auto_cal(struct i2c_client *client);
+
+
+//Functions END 
+/////////////////////////HACKING To GET THIS THING COMPILING BY ain101 END
+
+
 #define FT_DRIVER_VERSION	0x02
 
 #define FT_META_REGS		3
@@ -236,7 +264,7 @@ struct Upgrade_Info fts_updateinfo_curr;
 
 struct i2c_client *fts_i2c_client = NULL;
 
-#define FTS_GESTRUE
+//#define FTS_GESTRUE//////////////////////////////////////////////////////////////////////////HACKED ain101
 
 #ifdef FTS_GESTRUE
 #define  KEY_GESTURE_U		KEY_U
@@ -1492,7 +1520,7 @@ void focaltech_get_upgrade_array(void)
 	u32 i;
 	u8 temp = FT_REG_ID;
 
-	ft5x06_i2c_read(i2c_client,&temp,1,&chip_id);
+	ft5x06_i2c_read(fts_i2c_client,&temp,1,&chip_id,1);/////////////////////////////////////HACKED ain101
 
 	printk("%s chip_id = %x\n", __func__, chip_id);
 
@@ -2513,7 +2541,7 @@ static int fts_debug_write(struct file *filp,
 			DBG("%s\n", upgrade_file_path);
 			disable_irq(client->irq);
 
-			ret = fts_ctpm_fw_upgrade_with_app_file(client, upgrade_file_path);
+			ret = -1;//fts_ctpm_fw_upgrade_with_app_file(client, upgrade_file_path); ////////////////////////////////////////////////HACKED ain101
 
 			enable_irq(client->irq);
 			if (ret < 0) {
@@ -2611,6 +2639,10 @@ static int fts_debug_read( char *page, char **start,
 int fts_create_apk_debug_channel(struct i2c_client * client)
 {
 	fts_proc_entry = create_proc_entry(PROC_NAME, 0777, NULL);
+	///////
+	_proc_entry("sequence", 0, NULL);
+	proc_create("sequence", 0, NULL, &ct_file_ops);
+	///////
 	if (NULL == fts_proc_entry) {
 		dev_err(&client->dev, "Couldn't create proc entry!\n");
 		return -ENOMEM;
@@ -3621,7 +3653,7 @@ static int ft5x06_ts_probe(struct i2c_client *client,
 	focaltech_get_upgrade_array();
 
 	INIT_WORK(&data->touch_event_work, fts_touch_irq_work);
-	data->ts_workqueue = create_workqueue(FTS_NAME);
+	data->ts_workqueue = create_workqueue(FTS_NAME_STRING);
 	if (!data->ts_workqueue)
 	{
 		err = -ESRCH;
