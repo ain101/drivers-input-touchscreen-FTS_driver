@@ -1,0 +1,58 @@
+root@frederik-G501VW:/home/frederik# i2cget -y 7 0x15 00 b
+0x07
+root@frederik-G501VW:/home/frederik# i2cget -y 7 0x15 00 
+0x00
+root@frederik-G501VW:/home/frederik# i2cget -y 7 0x15 00 w
+0x0001
+root@frederik-G501VW:/home/frederik# i2cget -y 7 0x15 00 c
+
+
+
+
+
+          i2cget-6986  [006] .... 17443.681502: smbus_read: i2c-7 a=015 f=0000 c=0 BYTE_DATA
+          i2cget-6986  [006] .... 17443.681518: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [00]
+          i2cget-6986  [006] .... 17443.681519: i2c_read: i2c-7 #1 a=015 f=0001 l=1
+          i2cget-6986  [005] .... 17443.789150: i2c_reply: i2c-7 #1 a=015 f=0001 l=1 [07]
+          i2cget-6986  [005] .... 17443.789174: i2c_result: i2c-7 n=2 ret=2
+          i2cget-6986  [005] .... 17443.789177: smbus_reply: i2c-7 a=015 f=0000 c=0 BYTE_DATA l=1 [07]
+          i2cget-6986  [005] .... 17443.789178: smbus_result: i2c-7 a=015 f=0000 c=0 BYTE_DATA rd res=0
+
+
+
+
+
+
+          i2cget-6989  [002] .... 17472.997876: smbus_read: i2c-7 a=015 f=0000 c=0 BYTE_DATA
+          i2cget-6989  [002] .... 17472.997892: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [00]
+          i2cget-6989  [002] .... 17472.997893: i2c_read: i2c-7 #1 a=015 f=0001 l=1
+          i2cget-6989  [005] .... 17473.104979: i2c_reply: i2c-7 #1 a=015 f=0001 l=1 [00]
+          i2cget-6989  [005] .... 17473.104990: i2c_result: i2c-7 n=2 ret=2
+          i2cget-6989  [005] .... 17473.104992: smbus_reply: i2c-7 a=015 f=0000 c=0 BYTE_DATA l=1 [00]
+          i2cget-6989  [005] .... 17473.104993: smbus_result: i2c-7 a=015 f=0000 c=0 BYTE_DATA rd res=0
+
+
+
+
+
+
+          i2cget-6990  [002] .... 17479.952191: smbus_read: i2c-7 a=015 f=0000 c=0 WORD_DATA
+          i2cget-6990  [002] .... 17479.952209: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [00]
+          i2cget-6990  [002] .... 17479.952210: i2c_read: i2c-7 #1 a=015 f=0001 l=2
+          i2cget-6990  [005] .... 17480.060986: i2c_reply: i2c-7 #1 a=015 f=0001 l=2 [01-00]
+          i2cget-6990  [005] .... 17480.061002: i2c_result: i2c-7 n=2 ret=2
+          i2cget-6990  [005] .... 17480.061005: smbus_reply: i2c-7 a=015 f=0000 c=0 WORD_DATA l=2 [01-00]
+          i2cget-6990  [005] .... 17480.061006: smbus_result: i2c-7 a=015 f=0000 c=0 WORD_DATA rd res=0
+
+
+
+          i2cget-6991  [004] .... 17486.382192: smbus_write: i2c-7 a=015 f=0000 c=0 BYTE l=0 []
+          i2cget-6991  [004] .... 17486.382207: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [00]
+          i2cget-6991  [005] .... 17486.488824: i2c_result: i2c-7 n=1 ret=1
+          i2cget-6991  [005] .... 17486.488836: smbus_result: i2c-7 a=015 f=0000 c=0 BYTE wr res=0
+          i2cget-6991  [005] .... 17486.488844: smbus_read: i2c-7 a=015 f=0000 c=0 BYTE
+          i2cget-6991  [005] .... 17486.488845: i2c_read: i2c-7 #0 a=015 f=0001 l=1
+          i2cget-6991  [005] .... 17486.489004: i2c_reply: i2c-7 #0 a=015 f=0001 l=1 [00]
+          i2cget-6991  [005] .... 17486.489015: i2c_result: i2c-7 n=1 ret=1
+          i2cget-6991  [005] .... 17486.489017: smbus_reply: i2c-7 a=015 f=0000 c=0 BYTE l=1 [00]
+          i2cget-6991  [005] .... 17486.489018: smbus_result: i2c-7 a=015 f=0000 c=0 BYTE rd res=0

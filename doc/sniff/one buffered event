@@ -1,0 +1,56 @@
+other terminal: i2cdump  -y 7 0x15
+
+
+frederik@frederik-G501VW:~$ sudo cat /sys/kernel/debug/tracing/trace_pipe | grep -A50 -B2 "i2c_write: i2c-7 #0 a=015 f=0000 l=1 \[00\]" 
+         i2cdump-6593  [006] .... 15351.284014: smbus_read: i2c-7 a=015 f=0000 c=0 BYTE_DATA
+         i2cdump-6593  [006] .... 15351.284028: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [00]
+         i2cdump-6593  [006] .... 15351.284029: i2c_read: i2c-7 #1 a=015 f=0001 l=1
+         i2cdump-6593  [005] .... 15351.390408: i2c_reply: i2c-7 #1 a=015 f=0001 l=1 [07]
+         i2cdump-6593  [005] .... 15351.390420: i2c_result: i2c-7 n=2 ret=2
+         i2cdump-6593  [005] .... 15351.390422: smbus_reply: i2c-7 a=015 f=0000 c=0 BYTE_DATA l=1 [07]
+         i2cdump-6593  [005] .... 15351.390423: smbus_result: i2c-7 a=015 f=0000 c=0 BYTE_DATA rd res=0
+         i2cdump-6593  [005] .... 15351.390455: smbus_read: i2c-7 a=015 f=0000 c=1 BYTE_DATA
+         i2cdump-6593  [005] .... 15351.390457: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [01]
+         i2cdump-6593  [005] .... 15351.390458: i2c_read: i2c-7 #1 a=015 f=0001 l=1
+         i2cdump-6593  [005] .... 15351.390639: i2c_reply: i2c-7 #1 a=015 f=0001 l=1 [00]
+         i2cdump-6593  [005] .... 15351.390648: i2c_result: i2c-7 n=2 ret=2
+         i2cdump-6593  [005] .... 15351.390650: smbus_reply: i2c-7 a=015 f=0000 c=1 BYTE_DATA l=1 [00]
+         i2cdump-6593  [005] .... 15351.390651: smbus_result: i2c-7 a=015 f=0000 c=1 BYTE_DATA rd res=0
+         i2cdump-6593  [005] .... 15351.390670: smbus_read: i2c-7 a=015 f=0000 c=2 BYTE_DATA
+         i2cdump-6593  [005] .... 15351.390672: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [02]
+         i2cdump-6593  [005] .... 15351.390672: i2c_read: i2c-7 #1 a=015 f=0001 l=1
+         i2cdump-6593  [005] .... 15351.390876: i2c_reply: i2c-7 #1 a=015 f=0001 l=1 [01]
+         i2cdump-6593  [005] .... 15351.390890: i2c_result: i2c-7 n=2 ret=2
+         i2cdump-6593  [005] .... 15351.390891: smbus_reply: i2c-7 a=015 f=0000 c=2 BYTE_DATA l=1 [01]
+         i2cdump-6593  [005] .... 15351.390892: smbus_result: i2c-7 a=015 f=0000 c=2 BYTE_DATA rd res=0
+         i2cdump-6593  [005] .... 15351.390917: smbus_read: i2c-7 a=015 f=0000 c=3 BYTE_DATA
+         i2cdump-6593  [005] .... 15351.390919: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [03]
+         i2cdump-6593  [005] .... 15351.390920: i2c_read: i2c-7 #1 a=015 f=0001 l=1
+         i2cdump-6593  [005] .... 15351.391131: i2c_reply: i2c-7 #1 a=015 f=0001 l=1 [00]
+         i2cdump-6593  [005] .... 15351.391140: i2c_result: i2c-7 n=2 ret=2
+         i2cdump-6593  [005] .... 15351.391142: smbus_reply: i2c-7 a=015 f=0000 c=3 BYTE_DATA l=1 [00]
+         i2cdump-6593  [005] .... 15351.391142: smbus_result: i2c-7 a=015 f=0000 c=3 BYTE_DATA rd res=0
+         i2cdump-6593  [005] .... 15351.391167: smbus_read: i2c-7 a=015 f=0000 c=4 BYTE_DATA
+         i2cdump-6593  [005] .... 15351.391171: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [04]
+         i2cdump-6593  [005] .... 15351.391172: i2c_read: i2c-7 #1 a=015 f=0001 l=1
+         i2cdump-6593  [005] .... 15351.391374: i2c_reply: i2c-7 #1 a=015 f=0001 l=1 [00]
+         i2cdump-6593  [005] .... 15351.391381: i2c_result: i2c-7 n=2 ret=2
+         i2cdump-6593  [005] .... 15351.391383: smbus_reply: i2c-7 a=015 f=0000 c=4 BYTE_DATA l=1 [00]
+         i2cdump-6593  [005] .... 15351.391383: smbus_result: i2c-7 a=015 f=0000 c=4 BYTE_DATA rd res=0
+         i2cdump-6593  [005] .... 15351.391408: smbus_read: i2c-7 a=015 f=0000 c=5 BYTE_DATA
+         i2cdump-6593  [005] .... 15351.391412: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [05]
+         i2cdump-6593  [005] .... 15351.391412: i2c_read: i2c-7 #1 a=015 f=0001 l=1
+         i2cdump-6593  [005] .... 15351.391615: i2c_reply: i2c-7 #1 a=015 f=0001 l=1 [00]
+         i2cdump-6593  [005] .... 15351.391623: i2c_result: i2c-7 n=2 ret=2
+         i2cdump-6593  [005] .... 15351.391624: smbus_reply: i2c-7 a=015 f=0000 c=5 BYTE_DATA l=1 [00]
+         i2cdump-6593  [005] .... 15351.391625: smbus_result: i2c-7 a=015 f=0000 c=5 BYTE_DATA rd res=0
+         i2cdump-6593  [005] .... 15351.391650: smbus_read: i2c-7 a=015 f=0000 c=6 BYTE_DATA
+         i2cdump-6593  [005] .... 15351.391654: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [06]
+         i2cdump-6593  [005] .... 15351.391655: i2c_read: i2c-7 #1 a=015 f=0001 l=1
+         i2cdump-6593  [005] .... 15351.391803: i2c_reply: i2c-7 #1 a=015 f=0001 l=1 [00]
+         i2cdump-6593  [005] .... 15351.391806: i2c_result: i2c-7 n=2 ret=2
+         i2cdump-6593  [005] .... 15351.391807: smbus_reply: i2c-7 a=015 f=0000 c=6 BYTE_DATA l=1 [00]
+         i2cdump-6593  [005] .... 15351.391808: smbus_result: i2c-7 a=015 f=0000 c=6 BYTE_DATA rd res=0
+         i2cdump-6593  [005] .... 15351.391817: smbus_read: i2c-7 a=015 f=0000 c=7 BYTE_DATA
+         i2cdump-6593  [005] .... 15351.391820: i2c_write: i2c-7 #0 a=015 f=0000 l=1 [07]
+         i2cdump-6593  [005] .... 15351.391820: i2c_read: i2c-7 #1 a=015 f=0001 l=1
