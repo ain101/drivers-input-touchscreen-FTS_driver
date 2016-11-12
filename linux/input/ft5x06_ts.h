@@ -24,7 +24,7 @@
 #define FT6X06_ID		0x06
 #define FT6X36_ID       0x36
 
-#define FTS_APK_DEBUG
+//#define FTS_APK_DEBUG
 //#define CONFIG_TOUCHPANEL_PROXIMITY_SENSOR
 
 #define TPD_MAX_POINTS_2                        2

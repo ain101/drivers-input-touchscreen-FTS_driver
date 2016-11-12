@@ -2519,6 +2519,7 @@ static struct proc_dir_entry *fts_proc_entry;
 static int fts_debug_write(struct file *filp, 
 	const char __user *buff, unsigned long len, void *data)
 {
+  /*
 	struct i2c_client *client = (struct i2c_client *)fts_proc_entry->data;
 	unsigned char writebuf[2 * 1024];
 	int buflen = len;
@@ -2585,12 +2586,14 @@ static int fts_debug_write(struct file *filp,
 	
 
 	return len;
+	*/
 }
 
 /*interface of read proc*/
 static int fts_debug_read( char *page, char **start,
 	off_t off, int count, int *eof, void *data )
 {
+/*
 	struct i2c_client *client = (struct i2c_client *)fts_proc_entry->data;
 	int ret = 0;
 	unsigned char buf[PAGE_SIZE];
@@ -2600,7 +2603,7 @@ static int fts_debug_read( char *page, char **start,
 	
 	switch (proc_operate_mode) {
 	case PROC_UPGRADE:
-		/*after calling ft5x0x_debug_write to upgrade*/
+		//after calling ft5x0x_debug_write to upgrade
 		regaddr = 0xA6;
 		ret = ft5x0x_read_reg(client, regaddr, &regvalue);
 		if (ret < 0)
@@ -2635,30 +2638,28 @@ static int fts_debug_read( char *page, char **start,
 	
 	memcpy(page, buf, num_read_chars);
 	return num_read_chars;
+	*/
 }
 int fts_create_apk_debug_channel(struct i2c_client * client)
 {
-	fts_proc_entry = create_proc_entry(PROC_NAME, 0777, NULL);
-	///////
-	_proc_entry("sequence", 0, NULL);
-	proc_create("sequence", 0, NULL, &ct_file_ops);
-	///////
-	if (NULL == fts_proc_entry) {
-		dev_err(&client->dev, "Couldn't create proc entry!\n");
-		return -ENOMEM;
-	} else {
-		dev_info(&client->dev, "Create proc entry success!\n");
-		fts_proc_entry->data = client;
-		fts_proc_entry->write_proc = fts_debug_write;
-		fts_proc_entry->read_proc = fts_debug_read;
-	}
-	return 0;
+// 	fts_proc_entry = create_proc_entry(PROC_NAME, 0777, NULL);
+// 
+// 	if (NULL == fts_proc_entry) {
+// 		dev_err(&client->dev, "Couldn't create proc entry!\n");
+// 		return -ENOMEM;
+// 	} else {
+// 		dev_info(&client->dev, "Create proc entry success!\n");
+// 		fts_proc_entry->data = client;
+// 		fts_proc_entry->write_proc = fts_debug_write;
+// 		fts_proc_entry->read_proc = fts_debug_read;
+// 	}
+// 	return 0;
 }
 
 void fts_release_apk_debug_channel(void)
 {
-	if (fts_proc_entry)
-		remove_proc_entry(PROC_NAME, NULL);
+	//if (fts_proc_entry)
+		//remove_proc_entry(PROC_NAME, NULL);
 }
 
 static int ft5x06_auto_cal(struct i2c_client *client)
@@ -2738,7 +2739,7 @@ static int ft5x06_fw_upgrade_start(struct i2c_client *client,
 		/* Enter upgrade mode */
 		w_buf[0] = FT_UPGRADE_55;
 		ft5x06_i2c_write(client, w_buf, 1);
-		usleep(FT_55_AA_DLY_NS);
+		//usleep(FT_55_AA_DLY_NS);
 		w_buf[0] = FT_UPGRADE_AA;
 		ft5x06_i2c_write(client, w_buf, 1);
 
@@ -2907,6 +2908,7 @@ static int ft5x06_fw_upgrade_start(struct i2c_client *client,
 
 static int ft5x06_fw_upgrade(struct device *dev, bool force)
 {
+/*
 	struct ft5x06_ts_data *data = dev_get_drvdata(dev);
 	const struct firmware *pbt_buf = NULL;
 	u8 fw_file_maj, fw_file_min, fw_file_sub_min, fw_file_vendor_id;
@@ -2947,8 +2949,8 @@ static int ft5x06_fw_upgrade(struct device *dev, bool force)
 		&& (CTPM_FW[fw_len - 7] ^ CTPM_FW[fw_len - 5]) == 0xFF
 		&& (CTPM_FW[fw_len - 3] ^ CTPM_FW[fw_len - 4]) == 0xFF) 
 		{
-			/*FW upgrade */
-			/*call the upgrade function */
+			FW upgrade 
+			call the upgrade function 
 			if ((fts_updateinfo_curr.CHIP_ID==0x55) ||(fts_updateinfo_curr.CHIP_ID==0x08) ||(fts_updateinfo_curr.CHIP_ID==0x0a))
 			{
 				i_ret = fts_5x06_ctpm_fw_upgrade(client, pbt_buf->data, fw_len);
@@ -3000,7 +3002,7 @@ static int ft5x06_fw_upgrade(struct device *dev, bool force)
 					__func__);
 	}
 
-	/*
+	
 	if (data->family_id == FT6X36_ID) {
 		fw_file_maj = FT_FW_FILE_MAJ_VER_FT6X36(fw);
 		fw_file_vendor_id = FT_FW_FILE_VENDOR_ID_FT6X36(fw);
@@ -3039,7 +3041,7 @@ static int ft5x06_fw_upgrade(struct device *dev, bool force)
 		dev_err(dev, "FW format error\n");
 		rc = -EIO;
 	}
-	*/
+	
 
 	ft5x06_update_fw_ver(data);
 
@@ -3050,7 +3052,7 @@ static int ft5x06_fw_upgrade(struct device *dev, bool force)
 			data->fw_ver[1], data->fw_ver[2]);
 rel_fw:
 	release_firmware(pbt_buf);
-	return i_ret;
+	return i_ret;*/
 }
 
 static ssize_t ft5x06_update_fw_show(struct device *dev,

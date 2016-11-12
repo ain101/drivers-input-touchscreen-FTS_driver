@@ -1,0 +1,78 @@
+//http://blog.csdn.net/tigerlau225/article/details/9730219
+<span style="font-size:14px;font-weight: normal;">struct device {
+  struct device * parent;
+//The device's “parent” device, the device to which it is attached. In most cases, a parent device is some sort of bus or host controller. If parent is NULL, the device, is a top-level device, which is not usually what you want.
+  struct device_private * p;
+//Holds the private data of the driver core portions of the device. See the comment of the struct device_private for detail.
+  struct kobject kobj;
+//A top-level, abstract class from which other classes are derived.
+  const char * init_name;
+//Initial name of the device.
+  const struct device_type * type;
+//The type of device. This identifies the device type and carries type-specific
+  struct mutex mutex;
+//Mutex to synchronize calls to its driver.
+  struct bus_type * bus;
+//Type of bus device is on.
+  struct device_driver * driver;
+//Which driver has allocated this
+
+  void * platform_data;
+//Platform data specific to the device.
+  struct dev_pm_info power;
+//For device power management. See Documentation/power/devices.txt for details.
+  struct dev_pm_domain * pm_domain;
+//Provide callbacks that are executed during system suspend, hibernation, system resume and during runtime PM transitions along with subsystem-level and driver-level callbacks.
+#ifdef CONFIG_PINCTRL
+  struct dev_pin_info * pins;
+//For device pin management. See Documentation/pinctrl.txt for details.
+#endif
+#ifdef CONFIG_NUMA
+  int numa_node;
+//NUMA node this device is close to.
+#endif
+  u64 * dma_mask;
+//Dma mask (if dma'ble device).
+  u64 coherent_dma_mask;
+//Like dma_mask, but for alloc_coherent mapping as not all hardware supports 64-bit addresses for consistent allocations such descriptors.
+
+  struct device_dma_parameters * dma_parms;
+//A low level driver may set these to teach IOMMU code about segment limitations.
+  struct list_head dma_pools;
+//Dma pools (if dma'ble device).
+  struct dma_coherent_mem * dma_mem;
+//Internal for coherent mem override.
+#ifdef CONFIG_CMA
+  struct cma * cma_area;
+//Contiguous memory area for dma allocations
+#endif
+  struct dev_archdata archdata;
+//For arch-specific additions.
+  struct device_node * of_node;
+//Associated device tree node.
+  struct acpi_dev_node acpi_node;
+//Associated ACPI device node.
+  dev_t devt;
+//For creating the sysfs “dev”.
+  u32 id;
+//device instance
+
+  spinlock_t devres_lock;
+//Spinlock to protect the resource of the device.
+  struct list_head devres_head;
+//The resources list of the device.
+  struct klist_node knode_class;
+//The node used to add the device to the class list.
+  struct class * class;
+//The class of the device.
+  const struct attribute_group ** groups;
+//Optional attribute groups.
+  void (* release) (struct device *dev);
+//Callback to free the device after all references have gone away. This should be set by the allocator of the device (i.e. the bus driver that discovered the device).
+  struct iommu_group * iommu_group;
+//IOMMU group the device belongs to.
+  bool offline_disabled:1;
+//If set, the device is permanently online.
+  bool offline:1;
+//Set after successful invocation of bus type's .offline.
+}; </span> 
